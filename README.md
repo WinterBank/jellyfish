@@ -1,4 +1,4 @@
-<a href="https://aptos.dev">
+<a href="https://peerlync.com">
 	<img width="100%" src="./.assets/aptos_banner.png" alt="Aptos Banner" />
 </a>
 
@@ -9,19 +9,19 @@
 [![codecov](https://codecov.io/gh/aptos-labs/aptos-core/branch/main/graph/badge.svg?token=X01RKXSGDE)](https://codecov.io/gh/aptos-labs/aptos-core)
 [![Discord chat](https://img.shields.io/discord/945856774056083548?style=flat-square)](https://discord.gg/aptosnetwork)
 
-Aptos is a layer 1 blockchain bringing a paradigm shift to Web3 through better technology and user experience. Built with Move to create a home for developers building next-gen applications.
+JellyFish is a layer 1 blockchain bringing a paradigm shift to Web3 through better technology and user experience. Built with Move to create a home for developers building next-gen applications.
 
 ## Getting Started
 
-* [Aptos Foundation](https://aptosfoundation.org/)
-* [Aptos Developer Network](https://aptos.dev)
-* [Guide - Integrate with the Aptos Blockchain](https://aptos.dev/guides/system-integrators-guide)
-* [Tutorials](https://aptos.dev/tutorials)
-* Follow us on [Twitter](https://twitter.com/Aptos).
-* Join us on the [Aptos Discord](https://discord.gg/aptosnetwork).
+* [JellyFish Foundation](https://peerlync.com/)
+* [JellyFish Developer Network](https://dev.peerlync.com)
+* [Guide - Integrate with the Aptos Blockchain](https://dev.peerlync.com/guides/system-integrators-guide)
+* [Tutorials](https://dev.peerlync.com/tutorials)
+* Follow us on [Twitter](https://twitter.com/jellyfish).
+* Join us on the [Aptos Discord](https://discord.gg/jellyfish).
 
 ## Contributing
 
-You can learn more about contributing to the Aptos project by reading our [Contribution Guide](https://github.com/aptos-labs/aptos-core/blob/main/CONTRIBUTING.md) and by viewing our [Code of Conduct](https://github.com/aptos-labs/aptos-core/blob/main/CODE_OF_CONDUCT.md).
+You can learn more about contributing to the JellyFish project by reading our [Contribution Guide](https://github.com/winterbank/jellyfish/blob/main/CONTRIBUTING.md) and by viewing our [Code of Conduct](https://github.com/winterbank/jellyfish/blob/main/CODE_OF_CONDUCT.md).
 
-Aptos Core is licensed under [Apache 2.0](https://github.com/aptos-labs/aptos-core/blob/main/LICENSE).
+JellyFish is licensed under [Apache 2.0](https://github.com/winterbank/jellyfish/blob/main/LICENSE).
