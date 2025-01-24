@@ -289,7 +289,7 @@ edition = "2021"
 homepage = "https://aptoslabs.com"
 license = "Apache-2.0"
 publish = false
-repository = "https://github.com/aptos-labs/aptos-core"
+repository = "https://github.com/winterbank/jellyfish"
 rust-version = "1.78.0"
 
 [workspace.dependencies]
