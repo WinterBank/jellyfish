@@ -4,6 +4,9 @@ All notable changes to the Aptos CLI will be captured in this file. This project
 
 # Unreleased
 
+## [6.0.1] - 2025/01/17
+- Update Hasura metadata to include `entry_function_contract_address`, `entry_function_module_name`, and `entry_function_function_name` in `user_transactions` table.
+
 ## [6.0.0] - 2025/01/14
 - Set Compiler v2 as the default compiler and Move 2 as the default language version.
 - Add new `--move-1` flag to use Compiler v1 and Move 1.
