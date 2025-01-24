@@ -598,6 +598,7 @@ impl BlockMetadataExtension {
                     .clone()
                     .map(|pr| HexEncodedBytes::from(pr.randomness_cloned())),
             }),
+            BlockMetadataExt::V2(payload) => todo!("Implement V2 conversion"),
         }
     }
 }

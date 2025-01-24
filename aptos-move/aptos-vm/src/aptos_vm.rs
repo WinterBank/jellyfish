@@ -2530,74 +2530,82 @@ impl AptosVM {
                 None,
             ))
         });
-
+    
         let mut gas_meter = UnmeteredGasMeter;
         let mut session = self.new_session(
             resolver,
             SessionId::block_meta_ext(&block_metadata_ext),
             None,
         );
-
-        let block_metadata_with_randomness = match block_metadata_ext {
-            BlockMetadataExt::V0(_) => unreachable!(),
-            BlockMetadataExt::V1(v1) => v1,
-        };
-
-        let BlockMetadataWithRandomness {
-            id,
-            epoch,
-            round,
-            proposer,
-            previous_block_votes_bitvec,
-            failed_proposer_indices,
-            timestamp_usecs,
-            randomness,
-        } = block_metadata_with_randomness;
-
-        let args = vec![
-            MoveValue::Signer(AccountAddress::ZERO), // Run as 0x0
-            MoveValue::Address(AccountAddress::from_bytes(id.to_vec()).unwrap()),
-            MoveValue::U64(epoch),
-            MoveValue::U64(round),
-            MoveValue::Address(proposer),
-            failed_proposer_indices
-                .into_iter()
-                .map(|i| i as u64)
-                .collect::<Vec<_>>()
-                .as_move_value(),
-            previous_block_votes_bitvec.as_move_value(),
-            MoveValue::U64(timestamp_usecs),
-            randomness
-                .as_ref()
-                .map(Randomness::randomness_cloned)
-                .as_move_value(),
-        ];
-
-        let storage = TraversalStorage::new();
-
-        session
-            .execute_function_bypass_visibility(
-                &BLOCK_MODULE,
-                BLOCK_PROLOGUE_EXT,
-                vec![],
-                serialize_values(&args),
-                &mut gas_meter,
-                &mut TraversalContext::new(&storage),
-                module_storage,
-            )
-            .map(|_return_vals| ())
-            .or_else(|e| {
-                expect_only_successful_execution(e, BLOCK_PROLOGUE_EXT.as_str(), log_context)
-            })?;
-        SYSTEM_TRANSACTIONS_EXECUTED.inc();
-
-        let output = get_system_transaction_output(
-            session,
-            module_storage,
-            &self.storage_gas_params(log_context)?.change_set_configs,
-        )?;
-        Ok((VMStatus::Executed, output))
-    }
+    
+        match block_metadata_ext {
+            BlockMetadataExt::V0(_) => unreachable!(), // V0 is unreachable in this context
+            BlockMetadataExt::V1(block_metadata_with_randomness) => {
+                let BlockMetadataWithRandomness {
+                    id,
+                    epoch,
+                    round,
+                    proposer,
+                    previous_block_votes_bitvec,
+                    failed_proposer_indices,
+                    timestamp_usecs,
+                    randomness,
+                } = block_metadata_with_randomness;
+    
+                let args = vec![
+                    MoveValue::Signer(AccountAddress::ZERO), // Run as 0x0
+                    MoveValue::Address(AccountAddress::from_bytes(id.to_vec()).unwrap()),
+                    MoveValue::U64(epoch),
+                    MoveValue::U64(round),
+                    MoveValue::Address(proposer),
+                    failed_proposer_indices
+                        .into_iter()
+                        .map(|i| i as u64)
+                        .collect::<Vec<_>>()
+                        .as_move_value(),
+                    previous_block_votes_bitvec.as_move_value(),
+                    MoveValue::U64(timestamp_usecs),
+                    randomness
+                        .as_ref()
+                        .map(Randomness::randomness_cloned)
+                        .as_move_value(),
+                ];
+    
+                let storage = TraversalStorage::new();
+    
+                session
+                    .execute_function_bypass_visibility(
+                        &BLOCK_MODULE,
+                        BLOCK_PROLOGUE_EXT,
+                        vec![],
+                        serialize_values(&args),
+                        &mut gas_meter,
+                        &mut TraversalContext::new(&storage),
+                        module_storage,
+                    )
+                    .map(|_return_vals| ())
+                    .or_else(|e| {
+                        expect_only_successful_execution(e, BLOCK_PROLOGUE_EXT.as_str(), log_context)
+                    })?;
+                SYSTEM_TRANSACTIONS_EXECUTED.inc();
+    
+                let output = get_system_transaction_output(
+                    session,
+                    module_storage,
+                    &self.storage_gas_params(log_context)?.change_set_configs,
+                )?;
+                Ok((VMStatus::Executed, output))
+            }
+            BlockMetadataExt::V2(block_metadata_with_mining) => {
+                // Handle the V2 case, if applicable. Here, you can define the logic needed for V2.
+                // For now, just return an error or implement necessary functionality.
+                Err(VMStatus::error(
+                    StatusCode::UNKNOWN_INVARIANT_VIOLATION_ERROR, // Use an appropriate status code
+                    Some("BlockMetadataExt::V2 handling not implemented".into()),
+                ))
+            }            
+        }
+    }    
 
     fn extract_module_metadata(
         &self,
