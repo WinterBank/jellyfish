@@ -21,13 +21,13 @@ Over a sufficiently long time, the miner’s earnings will be the same regardles
 #### Mathematical Explanation:
 The miner’s earnings over time are proportional to:
 
-**Earnings**: $P(\text{difficulty}) \cdot 1.2^{\text{difficulty}}$
+**Earnings**: $P(\text{difficulty}) \cdot 1.524287^{\text{difficulty}}$
 
 Where:
 - $P(\text{difficulty})$ is the probability of finding a valid hash at a given difficulty.
-- $1.2^{\text{difficulty}}$ represents the reward for achieving that difficulty.
+- $1.524287^{\text{difficulty}}$ represents the reward for achieving that difficulty.
 
-The dynamic adjustment ensures that $P(\text{difficulty})$ balances $1.2^{\text{difficulty}}$, leading to the same average earnings over time.
+The dynamic adjustment ensures that $P(\text{difficulty})$ balances $1.524287^{\text{difficulty}}$, leading to the same average earnings over time.
 
 ---
 
@@ -39,13 +39,18 @@ Below are two charts:
 
 ![Miner Earnings Charts](./.assets/miner_earnings_charts.png)
 
-- **Reward vs. Difficulty:** As difficulty increases, the reward for a valid hash grows exponentially ($1.2^{\text{difficulty}}$).
+- **Reward vs. Difficulty:** As difficulty increases, the reward for a valid hash grows exponentially ($1.524287^{\text{difficulty}}$).
 - **Expected Earnings vs. Difficulty:** Despite the increase in reward with difficulty, the expected earnings remain constant due to the decreasing probability of finding a valid hash.
 
 ---
 
 ### Conclusion
 The dynamic difficulty adjustment ensures miners earn the same over a sufficiently long time, regardless of the difficulty level.
+
+### Maximum Supply
+- The maximum supply of coins in the network is 2,305,843,009,213,693,951.
+- This is the largest Mersenne prime that fits into a 64-bit integer.
+- It can also be represented as $2^{\text{61}} - 1$.
 
 ## Getting Started
 
