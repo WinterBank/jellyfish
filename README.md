@@ -1,5 +1,5 @@
 <a href="https://peerlync.com">
-	<img width="100%" src="./.assets/aptos_banner.png" alt="Aptos Banner" />
+	<img width="100%" src="./.assets/jellyfish_banner.png" alt="Aptos Banner" />
 </a>
 
 ---
